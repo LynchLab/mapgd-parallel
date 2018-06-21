@@ -15,7 +15,6 @@ In hope useful in genomics and bioinformatics studies.
 This software is released under GNU/GPL license
 Copyright (c) 2015, Ocean University of China
 =====================================================================
-
 */
 
 import java.io.*;
