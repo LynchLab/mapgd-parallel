@@ -1,0 +1,320 @@
+#!/bin/bash 
+#PBS -N Sequence_Coverage
+#PBS -k o
+#PBS -l nodes=1:ppn=16,walltime=12:00:00
+#PBS -l vmem=100gb
+#PBS -M ouqd@hotmail.com
+#PBS -m abe
+#PBS -j oe
+
+# Updated on 05/28/2018
+
+set +x 
+module rm gcc
+module load gcc
+module load gsl  
+
+module load samtools
+set -x
+cd /N/u/xw63/Carbonate/daphnia/genome_index
+set +x
+echo ===============================================================
+echo 0. Computing the average coverage of NGS sequencing
+echo ===============================================================
+set -x
+date
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-001 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-001-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-002 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-002-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-003 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-003-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-004 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-004-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-005 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-005-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-006 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-006-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-007 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-007-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-008 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-008-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-012 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-012-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-013 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-013-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-014 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-014-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-015 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-015-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-016 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-016-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-018 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-018-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-020 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-020-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-021 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-021-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-022 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-022-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-023 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-023-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-024 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-024-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-025 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-025-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-026 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-026-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-027 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-027-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-028 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-028-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-029 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-029-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-030 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-030-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-031 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-031-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-032 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-032-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-033 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-033-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-034 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-034-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-035 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-035-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-036 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-036-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-037 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-037-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-038 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-038-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-039 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-039-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-040 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-040-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-041 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-041-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-042 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-042-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-043 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-043-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-044 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-044-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-045 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-045-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-046 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-046-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-049 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-049-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-050 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-050-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-051 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-051-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-053 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-053-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-054 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-054-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-055 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-055-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-056 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-056-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-057 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-057-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-058 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-058-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-060 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-060-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-061 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-061-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-062 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-062-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-063 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-063-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-065 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-065-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-066 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-066-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-067 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-067-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-068 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-068-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-069 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-069-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-070 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-070-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-071 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-071-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-072 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-072-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-073 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-073-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-074 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-074-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-075 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-075-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-076 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-076-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-078 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-078-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-079 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-079-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-080 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-080-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-081 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-081-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-082 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-082-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-083 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-083-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-085 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-085-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-086 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-086-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-087 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-087-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-089 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-089-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-090 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-090-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-091 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-091-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-093 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-093-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-094 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-094-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-096 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-096-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-097 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-097-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-098 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-098-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-099 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-099-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-100 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-100-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-101 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-101-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-103 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-103-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-105 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-105-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-106 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-106-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-107 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-107-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-108 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-108-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-110 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-110-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-111 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-111-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-112 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-112-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-113 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-113-RG_Sorted_dedup_realigned_Clipped.bam &
+
+
+time java -XX:ParallelGCThreads=4 -Xmx32g -Xms32g -Djavaio.tmpdir=/N/dc2/scratch/xw63/PA2013/Bwa/tmp -jar /N/soft/rhel6/gatk/3.4-0/GenomeAnalysisTK.jar -T DepthOfCoverage -R /N/u/xw63/Carbonate/daphnia/genome_index/PA42.4.1.fasta -o /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-114 -I /N/dc2/scratch/xw63/PA2013/Bwa/PA2013-114-RG_Sorted_dedup_realigned_Clipped.bam &
+
+wait
+
+date
+
+echo ===============================================================
+echo =============Task completed.===================
+echo ===============================================================
