@@ -1,4 +1,28 @@
-#! /bin/usr/perl -w
+#! /N/soft/rhel7/perl/gnu/5.24.1/bin/perl -w
+=pod
+======================================================================
+ This parallel mapgd pipeline will find mpileup files in <DATA_DIR>  and produce mapgd proview files in parallel, then combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline for population genetics computation.
+
+		Usage: perl MPMP.pl <DATA_DIR> <Sample_ID>
+
+=====================================================================
+Written by:                   
+Xiaolong Wang 
+email: ouqd@hotmail.com
+website: http://www.DNAplusPro.com
+=====================================================================
+In hope useful in genomics and bioinformatics studies.
+This software is released under GNU/GPL license
+Copyright (c) 2018, Ocean University of China
+Lynch Lab, CME, Biodesign, Arizona State University
+=====================================================================
+=cut
+	print "
+ This parallel mapgd pipeline find mpileup files in <DATA_DIR>  and produce mapgd proview files in parallel, then combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline for population genetics computation.
+		
+	Usage: perl MPMP.pl <DATA_DIR> <Sample_ID>		
+	
+	"; 
 
 $DATA_DIR=$ARGV[0];
 
@@ -10,7 +34,10 @@ if($DATA_DIR eq "")
 
 if(!(-e (glob($DATA_DIR))[0]))
 {
-	print "\nThe 1nd input (args) is the data directory. The data directory is not found:
+	print "
+	
+	The 1nd input (args) is the data directory. 
+	The data directory is not found:
 				$DATA_DIR
 	
 	"; 
@@ -25,7 +52,12 @@ $Sample_ID=$ARGV[1];
 
 if ($Sample_ID eq "")
 {
-	print "\n\nPlease input a population/Sample ID (The 2nd args).\n\n"; 
+	print "
+
+	Please input a population/Sample ID (The 2nd args).
+	
+	
+	"; 
 	exit
 }
 
@@ -84,22 +116,26 @@ while ($n<=$MaxNumberofSamples+1) {
 	
 	if(-e "$DATA_DIR/$OUTPUT.mpileup"){ 
 		$n1=$n1+1;	
+		print "\n$n1: $OUTPUT.mpileup --> $OUTPUT.proview";
 		if(-e "$DATA_DIR/$OUTPUT.proview"){
-			print "$DATA_DIR/$OUTPUT.proview already exist. if you want to reproduce it, please delete it first.\n"; 
+			print ", already exist. "; 
 		}
 		else
 		{		
 			$n2=$n2+1;	
-			#print ", Okay, a mpileup file is found! lets make a mapgd pro file:$OUTPUT.proview\n"; 
-			print "$n1: $OUTPUT.mpileup\n";
-			print OUT1 "\n			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i $OUTPUT.mpileup -H $HeaderFile > $OUTPUT.proview &\n";	
+			print ", will produce. "; 
+			print OUT1 "
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i $OUTPUT.mpileup -H $HeaderFile > $OUTPUT.proview &
+";	
 		}			
 	}
 }
 
 print OUT1 
-"\nwait\n
+"
+wait
+
 date
 set +x
 echo ===============================================================
@@ -193,21 +229,35 @@ echo ===============================================================
 		
 if ($n1>0)
 {
-print "\n$n1 mpileup file(s) are found in $DATA_DIR.\n\n";
+	print "\n\n$n1 mpileup file(s) are found in $DATA_DIR.\n\n";
 }
 else
 {
-	print "No mpileup file is found in $DATA_DIR.\n\n\n";
+	print "\n\nNo mpileup file is found in the data directory:
+		$DATA_DIR
+	the mpileup files must be named as:
+	$Sample_ID-001.mpileup 
+	$Sample_ID-002.mpileup 
+	
+		......
+	
+	$Sample_ID-100.mpileup 
+	";
+	
+	exit;
 }
 
 if ($n2>0)
 {
-	print "\n$n2 mpileup file(s) have no mapgd proview file(s).\n\n";
 	print "
+	
+	$n2 of the mpileup file(s) have no mapgd proview file(s).
+	
+	Submit the following pbs to run mapgd pipeline in parallel: 
 	============================================================
-	Type the following command to produce the mapgd proview files: 
 
-	  qsub ./mapgd-parallel.pbs
+		qsub ./mapgd-parallel.pbs
+	
 	============================================================
 	
 	
@@ -215,7 +265,12 @@ if ($n2>0)
 }
 else
 {
-	print "All mpileup file(s) already have proview file(s) exist.\n\n\n";
-	print "If you want to reproduce proview file(s), please delete it firstly.\n"; 
+	print "
+	
+	All mpileup file(s) already have proview file(s) exist.
+	
+	If you want to reproduce proview file(s), please delete it firstly.
+	
+	"; 
 }
 
