@@ -99,7 +99,10 @@ if ($n2>0)
 	Type the following command to produce the mapgd proview files: 
 
 	  qsub ./mapgd-parallel-proview.pbs
-	============================================================\n\n\n";
+	============================================================
+	
+	
+	";
 }
 else
 {
