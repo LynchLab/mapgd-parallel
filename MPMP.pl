@@ -1,15 +1,34 @@
 #! /bin/usr/perl -w
 
-#ref_genome index path and file
-#$workdir="/N/u/xw63/Carbonate/daphnia/DaphniaVariantCall";
-#$ref_genome="PA42.4.1";
+$DATA_DIR=$ARGV[0];
 
-# The adapter file: an example (Bioo_Adapters.fa) can be found in the same directory ($workdir)
-#$Adapters="/PATH/TO/Adapters.fa";
-#$Adapters="/N/u/xw63/Carbonate/daphnia/Bioo_Adapters.fa";
+if($DATA_DIR eq "")
+{
+	print "\n\nThe 1nd input (args) is the data directory. Please input the data directory.\n\n"; 
+	exit
+}
 
-$SampleID="PA2013"; 
-$DATA_DIR="/N/dc2/scratch/xw63/$SampleID/Bwa";
+if(!(-e (glob($DATA_DIR))[0]))
+{
+	print "\nThe 1nd input (args) is the data directory. The data directory is not found:
+				$DATA_DIR
+	
+	"; 
+	exit
+}
+
+print "\n The data directory is:
+				$DATA_DIR
+	"; 
+
+$Sample_ID=$ARGV[1]; 
+
+if ($Sample_ID eq "")
+{
+	print "\n\nPlease input a population/Sample ID (The 2nd args).\n\n"; 
+	exit
+}
+
 $MaxNumberofSamples=125;
 $emailaddress='ouqd@hotmail.com';
 $HeaderFile="$DATA_DIR/PA42.header";
@@ -24,7 +43,7 @@ open OUT1, ">./mapgd-parallel.pbs" or die "cannot open file: $!";
 
 print OUT1 
 "#!/bin/bash 
-#PBS -N mapgd-parallel-$SampleID
+#PBS -N mapgd-parallel-$Sample_ID
 #PBS -k o
 #PBS -l nodes=1:ppn=16,walltime=$walltime
 #PBS -l vmem=100gb
@@ -61,7 +80,7 @@ $n2=0;
 while ($n<=$MaxNumberofSamples+1) {
 	$n=$n+1;
 	$nstr001= sprintf ("%03d", $n-1);
-	$OUTPUT="$SampleID-$nstr001";
+	$OUTPUT="$Sample_ID-$nstr001";
 	
 	if(-e "$DATA_DIR/$OUTPUT.mpileup"){ 
 		$n1=$n1+1;	
@@ -87,7 +106,7 @@ echo ===============================================================
 echo 2. Combine all mapgd proview files into one.
 echo ===============================================================
 set -x
-time java -cp ~/daphnia/DaphniaVariantCall CombineProview $DATA_DIR $SampleID
+time java -cp ~/daphnia/DaphniaVariantCall CombineProview $DATA_DIR $Sample_ID
 set +x
 echo ===============================================================
 echo 3. Exclude mtDNA data from the pro file.
@@ -95,22 +114,22 @@ echo ===============================================================
 echo if mtDNA sequence is not included in the reference genome, skip this step:
 echo if mtDNA sequence is included in the reference genome, execute this:
 set -x
-echo time grep -v '^PA42_mt_genome' $SampleID.combined.pro.txt \> Nuc_$SampleID.combined.pro.txt
-echo mv Nuc_$SampleID.combined.Pro.txt $SampleID.combined.pro.txt
+echo time grep -v '^PA42_mt_genome' $Sample_ID.combined.pro.txt \> Nuc_$Sample_ID.combined.pro.txt
+echo mv Nuc_$Sample_ID.combined.Pro.txt $Sample_ID.combined.pro.txt
 set +x
 
 echo ===============================================================
 echo 4. Run the allele command to estimate allele and genotype frequencies from the pro file.
 echo ===============================================================
 set -x
-time mapgd allele -i $DATA_DIR/$SampleID.combined.pro.txt -o $DATA_DIR/$SampleID.combined.map -p $DATA_DIR/$SampleID.combined.clean
+time mapgd allele -i $DATA_DIR/$Sample_ID.combined.pro.txt -o $DATA_DIR/$Sample_ID.combined.map -p $DATA_DIR/$Sample_ID.combined.clean
 set +x
 
 echo ===============================================================
 echo 5. Run the filter command to filter the map file of ML estimates of the parameters.
 echo ===============================================================
 set -x
-time mapgd filter -i $DATA_DIR/$SampleID.combined.map.map -p 20 -q 0.05 -Q 0.45 -c 800 -C 2400 -o $DATA_DIR/$SampleID.combined_filtered.map
+time mapgd filter -i $DATA_DIR/$Sample_ID.combined.map.map -p 20 -q 0.05 -Q 0.45 -c 800 -C 2400 -o $DATA_DIR/$Sample_ID.combined_filtered.map
 set +x
 echo -p: minimum value of the likelihood-ratio test statistic for polymorphism 
 echo -q: minimum minor-allele frequency estimate
@@ -121,41 +140,41 @@ echo ===============================================================
 echo 6. Run the genotype command to generate a file of genotype likelihoods
 echo ===============================================================
 set -x
-time mapgd genotype -p $DATA_DIR/$SampleID.combined.clean.pro -m $DATA_DIR/$SampleID.combined_filtered.map.map > $DATA_DIR/$SampleID.combined.genotype
+time mapgd genotype -p $DATA_DIR/$Sample_ID.combined.clean.pro -m $DATA_DIR/$Sample_ID.combined_filtered.map.map > $DATA_DIR/$Sample_ID.combined.genotype
 set +x
 
 echo ===============================================================
 echo 6-1. Remove the unnecessary header and footer
 echo ===============================================================
 set -x
-time awk \'{if (\$3 != \"MN_FREQ\" && \$3 >= 0.0 && \$3 <= 1.0) print}\' $DATA_DIR/$SampleID.combined.genotype \> $DATA_DIR/$SampleID.combined_F.genotype
+time awk \'{if (\$3 != \"MN_FREQ\" && \$3 >= 0.0 && \$3 <= 1.0) print}\' $DATA_DIR/$Sample_ID.combined.genotype \> $DATA_DIR/$Sample_ID.combined_F.genotype
 set +x
 echo ===============================================================
 echo 6-2. Randomly pick a specified number - 200000 of SNPs from the file of genotype likelihoods 
 ===============================================================
 
 set -x
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/extras/sub_sample.py $DATA_DIR/$SampleID.combined_F.genotype -N 200000 > $DATA_DIR/$SampleID.combined_F_200K.genotype
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/extras/sub_sample.py $DATA_DIR/$Sample_ID.combined_F.genotype -N 200000 > $DATA_DIR/$Sample_ID.combined_F_200K.genotype
 set +x
 echo ===============================================================
 echo 6-3. Extract the header from the file of genotype likelihoods
 echo ===============================================================
 set -x
-time head -n -1 $DATA_DIR/$SampleID.combined.genotype | awk \'{if (\$3 == NULL || \$1 ~ /^@/) print}\' \> $DATA_DIR/$SampleID.combined_header.genotype
+time head -n -1 $DATA_DIR/$Sample_ID.combined.genotype | awk \'{if (\$3 == NULL || \$1 ~ /^@/) print}\' \> $DATA_DIR/$Sample_ID.combined_header.genotype
 set +x
 echo ===============================================================
 echo 6-4. Extract the footer from the file of genotype likelihoods
 echo ===============================================================
 
 set -x
-time tail -n 1 $DATA_DIR/$SampleID.combined.genotype > $DATA_DIR/$SampleID.combined_footer.genotype
+time tail -n 1 $DATA_DIR/$Sample_ID.combined.genotype > $DATA_DIR/$Sample_ID.combined_footer.genotype
 set +x
 echo ===============================================================
 echo 6-5. Add the header and footer to the sub-sample of the file of genotype likelihoods
 echo ===============================================================
 
 set -x
-time cat $DATA_DIR/$SampleID.combined_header.genotype $DATA_DIR/$SampleID.combined_F_200K.genotype $DATA_DIR/$SampleID.combined_footer.genotype > $DATA_DIR/$SampleID.combined_F_200K_wh_wf.genotype
+time cat $DATA_DIR/$Sample_ID.combined_header.genotype $DATA_DIR/$Sample_ID.combined_F_200K.genotype $DATA_DIR/$Sample_ID.combined_footer.genotype > $DATA_DIR/$Sample_ID.combined_F_200K_wh_wf.genotype
 
 set +x
 echo ===============================================================
@@ -163,7 +182,7 @@ echo 7. Run the relatedness command
 echo ===============================================================
 
 set -x
-time mapgd relatedness -i $DATA_DIR/$SampleID.combined_F_200K_wh_wf.genotype -o $DATA_DIR/$SampleID.combined_F_200K_wh_wf_rel.out
+time mapgd relatedness -i $DATA_DIR/$Sample_ID.combined_F_200K_wh_wf.genotype -o $DATA_DIR/$Sample_ID.combined_F_200K_wh_wf_rel.out
 
 set +x
 echo ===============================================================
