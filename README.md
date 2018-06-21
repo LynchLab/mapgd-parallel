@@ -28,6 +28,7 @@ After mapping all the reads to the reference genome, you have got a number of .m
 	This will produce a parallel mapgd pipeline (mapgd-parallel.pbs).
 
 2. Submit the parallel mapgd pipeline:
+
 	===============================================
 
 		qsub mapgd-parallel.pbs
