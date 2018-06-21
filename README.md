@@ -7,16 +7,18 @@
 		#	How to make and run the parallel mapgd pipeline  #
 		==============================================================
 		
-1. After mapping all the reads to the reference genome, you have got a number of .mpileup files: 
+After mapping all the reads to the reference genome, you have got a number of .mpileup files: 
 
 	========================================================
+	
 		SampleID-001.mpileup
 		SampleID-002.mpileup
 				...
 		SampleID-096.mpileup
 	========================================================
 
-2. Make proview files: 
+1. Make a parallel mapgd pipeline: 
+
 	========================================================
 	
 		perl MPMP.pl
@@ -25,7 +27,7 @@
 	
 	This will produce a parallel mapgd pipeline (mapgd-parallel.pbs).
 
-3. Submit the parallel mapgd pipeline:
+2. Submit the parallel mapgd pipeline:
 	===============================================
 
 		qsub mapgd-parallel.pbs
@@ -51,6 +53,7 @@ To reduce the computation time, in this new pipeline (mapgd-parallel.pbs, produc
 the proview files are generated for each of the 96 clones independently:
  
 	======================================================================================
+	
 	mapgd proview -i $SampleID-001.mpileup -H $HeaderFile > $SampleID-001.proview &
 	mapgd proview -i $SampleID-002.mpileup -H $HeaderFile > $SampleID-002.proview &
 	mapgd proview -i $SampleID-003.mpileup -H $HeaderFile > $SampleID-003.proview &
