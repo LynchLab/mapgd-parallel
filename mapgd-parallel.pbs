@@ -30,43 +30,10 @@ set -x
 date
 
 			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-000.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-000.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-002.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-002.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-003.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-003.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-004.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-004.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-005.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-005.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-006.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-006.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-007.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-007.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-008.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-008.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-012.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-012.proview &
-
-			
 time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-013.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-013.proview &
 
 			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-014.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-014.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-015.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-015.proview &
-
-			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-018.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-018.proview &
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-002.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-002.proview &
 
 			
 time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-021.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-021.proview &
@@ -75,10 +42,43 @@ time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-
 time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-022.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-022.proview &
 
 			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-025.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-025.proview &
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-014.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-014.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-007.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-007.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-012.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-012.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-008.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-008.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-000.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-000.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-004.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-004.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-006.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-006.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-003.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-003.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-018.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-018.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-005.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-005.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-015.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-015.proview &
 
 			
 time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-027.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-027.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-025.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/PA42.header > PA2013-025.proview &
 
 wait
 

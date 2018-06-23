@@ -3,32 +3,35 @@
 ======================================================================
  This parallel mapgd pipeline will find mpileup files in <DATA_DIR>  and produce mapgd proview files in parallel, then combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline for population genetics computation.
 
-		Usage: perl MPMP.pl <DATA_DIR> <Sample_ID>
+		Usage: perl MPMP.pl <DATA_DIR> 
 
 =====================================================================
 Written by:                   
-Xiaolong Wang 
+Xiaolong Wang
 email: ouqd@hotmail.com
 website: http://www.DNAplusPro.com
 =====================================================================
 In hope useful in genomics and bioinformatics studies.
 This software is released under GNU/GPL license
-Copyright (c) 2018, Ocean University of China
+Copyright (c) 2018
 Lynch Lab, CME, Biodesign, Arizona State University
+Lab of MCB, College of Life Sciences, Ocean University of China,
 =====================================================================
 =cut
 	print "
  This parallel mapgd pipeline find mpileup files in <DATA_DIR>  and produce mapgd proview files in parallel, then combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline for population genetics computation.
 		
-	Usage: perl MPMP.pl <DATA_DIR> <Sample_ID>		
+	Usage: perl MPMP.pl <DATA_DIR> 		
 	
 	"; 
+use warnings;
+use strict;
 
-$DATA_DIR=$ARGV[0];
+my $DATA_DIR=$ARGV[0];
 
 if($DATA_DIR eq "")
 {
-	print "\n\nThe 1nd input (args) is the data directory. Please input the data directory.\n\n"; 
+	print "\n\nThe 1st (and only) input (args[0]) is the data directory. Please input the data directory.\n\n"; 
 	exit
 }
 
@@ -48,26 +51,23 @@ print "\n The data directory is:
 				$DATA_DIR
 	"; 
 
-$Sample_ID=$ARGV[1]; 
+my $emailaddress='ouqd@hotmail.com';
+my $HeaderFile="$DATA_DIR/PA42.header";
+my $walltime="120:00:00";
+	
+my $Sample_ID=$ARGV[1];; 
 
 if ($Sample_ID eq "")
 {
 	print "
 
-	Please input a population/Sample ID (The 2nd args).
-	
+	Please input a population/Sample ID (The 2nd args), which will be used as the names of the output files.
 	
 	"; 
 	exit
 }
 
-$MaxNumberofSamples=125;
-$emailaddress='ouqd@hotmail.com';
-$HeaderFile="$DATA_DIR/PA42.header";
-$walltime="120:00:00";
-
-# The paths to the software used in this pipeline
-# You must first make sure you have all these software installed and they are all functional
+print "Population/Sample_ID is: $Sample_ID\n\n";
 
 #Now we find the mpileup files and produce a batch file for them
 
@@ -106,29 +106,45 @@ set -x
 date
 ";
 
-$n=0;
-$n1=0;
-$n2=0;
-while ($n<=$MaxNumberofSamples+1) {
-	$n=$n+1;
-	$nstr001= sprintf ("%03d", $n-1);
-	$OUTPUT="$Sample_ID-$nstr001";
-	
-	if(-e "$DATA_DIR/$OUTPUT.mpileup"){ 
+my $n=0;
+my $n1=0;
+my $n2=0;
+
+my $file;
+my @dir;
+my $OUTPUT=" ";
+
+opendir (DIR, $DATA_DIR) or die "can't open the directory!";
+@dir = readdir DIR;
+foreach $file (@dir) 
+{
+	my $str_len = length($file);
+	my $last_dot=rindex($file,".");
+	$OUTPUT=substr $file, 0, $last_dot;
+	my $extension=substr $file, $last_dot, $str_len-$last_dot;	
+	#print $OUTPUT." ".$extension."\n ";
+	if ( $extension eq ".mpileup") {
 		$n1=$n1+1;	
-		print "\n$n1: $OUTPUT.mpileup --> $OUTPUT.proview";
-		if(-e "$DATA_DIR/$OUTPUT.proview"){
-			print ", already exist. "; 
+		
+		print "\n$n1: $file --> $OUTPUT.proview";
+		
+		if(-e "$DATA_DIR/$OUTPUT.proview")
+		{
+			print ": already exist.\n "; 
 		}
 		else
 		{		
 			$n2=$n2+1;	
-			print ", will produce. "; 
+			print ": will produce.\n "; 
 			print OUT1 "
 			
-time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i $OUTPUT.mpileup -H $HeaderFile > $OUTPUT.proview &
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i $file -H $HeaderFile > $OUTPUT.proview &
 ";	
 		}			
+	}
+	else 
+	{
+		#print "$file: Not a mpileup file!\n";
 	}
 }
 
@@ -274,3 +290,4 @@ else
 	"; 
 }
 
+print "Population/Sample_ID $Sample_ID will be used as the names of the output files.\n\n";
