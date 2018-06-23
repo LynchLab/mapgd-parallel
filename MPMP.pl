@@ -1,4 +1,4 @@
-#! /N/soft/rhel7/perl/gnu/5.24.1/bin/perl -w
+#! perl -w
 =pod
 ======================================================================
  This parallel mapgd pipeline will find mpileup files in <DATA_DIR>  and produce mapgd proview files in parallel, then combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline for population genetics computation.
