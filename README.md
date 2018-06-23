@@ -23,7 +23,7 @@ After mapping all the reads to the reference genome, you have got a number of .m
 
 	========================================================
 	
-		perl MPMP.pl <DATA_DIR> <SampleID>
+		perl MPMP.pl <DATA_DIR> <Output>
 		
 	========================================================
 	
