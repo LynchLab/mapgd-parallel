@@ -1,9 +1,9 @@
-#! perl -w
+#! /N/soft/rhel7/perl/gnu/5.24.1/bin/perl -w
 =pod
 ======================================================================
- This parallel mapgd pipeline will find mpileup files in <DATA_DIR>  and produce mapgd proview files in parallel, then combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline for population genetics computation.
+ This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
 
-		Usage: perl MPMP.pl <DATA_DIR> 
+		Usage: perl MPMP.pl <DATA_DIR> <Output>	
 
 =====================================================================
 Written by:                   
@@ -13,28 +13,30 @@ website: http://www.DNAplusPro.com
 =====================================================================
 In hope useful in genomics and bioinformatics studies.
 This software is released under GNU/GPL license
-Copyright (c) 2018
-Lynch Lab, CME, Biodesign, Arizona State University
-Lab of MCB, College of Life Sciences, Ocean University of China,
+Copyright (c) 2018 to:
+1. Lynch Lab, CME, Biodesign, Arizona State University
+2. Lab of Molecular and Computational Biology, Ocean University of China,
 =====================================================================
 =cut
 	print "
- This parallel mapgd pipeline find mpileup files in <DATA_DIR>  and produce mapgd proview files in parallel, then combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline for population genetics computation.
+ This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
 		
-	Usage: perl MPMP.pl <DATA_DIR> 		
-	
-	"; 
+	Usage: perl MPMP.pl <DATA_DIR> <Output>	"; 
 use warnings;
 use strict;
 
-my $DATA_DIR=$ARGV[0];
-
-if($DATA_DIR eq "")
+if(@ARGV == 0)
 {
-	print "\n\nThe 1st (and only) input (args[0]) is the data directory. Please input the data directory.\n\n"; 
+	print "\n\n\t\tPlease input the <data directory> and <output file name>.\n\n"; 
 	exit
 }
 
+if($ARGV[0] eq "")
+{
+	print "\n\n Please input the data directory and output file name.\n\n"; 
+	exit
+}
+my $DATA_DIR=$ARGV[0];
 if(!(-e (glob($DATA_DIR))[0]))
 {
 	print "
