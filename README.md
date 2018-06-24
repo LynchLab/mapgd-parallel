@@ -52,7 +52,7 @@ This is simple and straightforward. However, it is very slow because it is not f
 
 To reduce the computation time, in this new pipeline produced by MPMP.pl (mapgd-parallel.pbs), the proview files are generated for each of the 96 clones independently:
  
-	========================================================================
+	====================================================================================
 	
 	mapgd proview -i $SampleID-001.mpileup -H $HeaderFile > $SampleID-001.proview &
 	mapgd proview -i $SampleID-002.mpileup -H $HeaderFile > $SampleID-002.proview &
@@ -64,7 +64,7 @@ To reduce the computation time, in this new pipeline produced by MPMP.pl (mapgd-
 	
 	wait
 	
-	========================================================================
+	=====================================================================================
 
 Then, the produced mapgd proview files are combined by using a homemade java program (CombineProview.java), which will find all mapgd proview files are combined them into one:
 
