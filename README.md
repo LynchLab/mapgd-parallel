@@ -1,7 +1,7 @@
 ## Parallel mapgd pipeline for population genetics computation on NGS data
 ### Lynch Lab, CME, Biodesign, ASU 
 #### Curated by Takahiro Maruki, Zhiqiang Ye, Chaoxian Zhao, R. Taylor Raborn and Xiaolong Wang 
-#### Crrespondence to: Michael Lynch <lynch11@asu.edu>
+#### Crrespondence to: Michael Lynch <mlynch11@asu.edu>
 #### Initialized May 28, 2018
 
 		
