@@ -2,6 +2,7 @@
 ### Lynch Lab, CME, Biodesign, ASU 
 #### Curated by Takahiro Maruki, Zhiqiang Ye, Chaoxian Zhao, R. Taylor Raborn and Xiaolong Wang 
 #### Crrespondence to: Michael Lynch <mlynch11@asu.edu>
+#### Bug reporting to: Xiaolong Wang <ouqd@hotmail.com>
 #### Initialized May 28, 2018
 
 		
@@ -38,20 +39,21 @@ After mapping all the reads to the reference genome, you have got a number of .m
 		
 	===============================================
 	
-This parallel mapgd pipeline will produce mapgd proview files in parallel and combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline the same as the original mapgd pipeline(mapgd_original.pbs).
+This parallel mapgd pipeline will produce a mapgd proview file for each mpileup file in parallel, combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline the same as the original mapgd pipeline(mapgd_original.pbs).
 
-### How  the parallel mapgd pipeline works? What is the diffrence from the original pipeline?
+### How does the parallel mapgd pipeline work? What is the diffrence from the original pipeline?
 
 In the original pipeline, mapgd proview files are produced by the following command:
+
 	=========================================================================
  
 		mapgd proview -i *.mpileup -H $HeaderFile > output.pro.txt 
 		
  	=========================================================================
 
-This is simple and straightforward. However, it is very slow because it is not fully parallelized. This step may takes up to 50-100 hours for a population with 96 clones. 
+mapgd will find all mpileup files and then produce a proview file for each mpileup file one by one. This is simple and straightforward. However, it is very slow because it is not fully parallelized. This step may takes up to 50-100 hours for a population with 96 clones. 
 
-To reduce the computation time, in this new pipeline produced by MPMP.pl (mapgd-parallel.pbs), the proview files are generated for each of the 96 clones independently:
+To reduce the computation time, in this new pipeline (mapgd-parallel.pbs, produced by MPMP.pl), the proview files are generated independently and in parallel:
  
 	====================================================================================
 	
@@ -67,7 +69,7 @@ To reduce the computation time, in this new pipeline produced by MPMP.pl (mapgd-
 	
 	=====================================================================================
 
-Then, the produced mapgd proview files are combined by using a homemade java program (CombineProview.java), which will find all mapgd proview files are combined them into one:
+Then, the mapgd proview files produced are combined by using a java program (CombineProview.java), which will find all mapgd proview files are combined them into one:
 
 	=============================================================
 	
@@ -75,6 +77,8 @@ Then, the produced mapgd proview files are combined by using a homemade java pro
 		
 	=============================================================
 	
-In this way, mapgd proview file is produced for each of the 96 clones. Because all processes can be run simutaneously in independent threads, the computation time is greatly reduced. It also helps to identify a bad mpileup file more conviniently. When one of the mpileup file is invalid and breaks one of the mapgd threads, it will not break the whole pipeline. Just fix or ignore the bad one, no need to re-compute the whole population.
+In this way, mapgd proview files are produced for each of the clones in a population. Because all processes can be run simutaneously in independent threads, the computation time is greatly reduced in a multi-core computer.
+
+In addition, it also helps to identify a bad mpileup file (if any) more conviniently. When one of the mpileup files is invalid, it breaks only one of the mapgd proview threads, and will not break the whole pipeline. Just fix (or ignore) the bad one, no need to re-compute the whole population.
 	
-======================END=======================================
+================================END=======================================
