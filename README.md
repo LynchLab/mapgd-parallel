@@ -3,9 +3,9 @@
 #### Curated and updated by Xiaolong Wang <ouqd@hotmail.com>
 #### Initialized May 28, 2018
 
-		============================================================================================
-			### How to make and run the parallel mapgd pipeline  
-		============================================================================================
+		
+### How to make and run the parallel mapgd pipeline  
+			
 		
 After mapping all the reads to the reference genome, you have got a number of .mpileup files: 
 
@@ -39,10 +39,7 @@ After mapping all the reads to the reference genome, you have got a number of .m
 	
 This parallel mapgd pipeline will produce mapgd proview files in parallel and combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline the same as the original mapgd pipeline(mapgd_original.pbs).
 
-		============================================================================================
-			   ### How  the parallel mapgd pipeline works? 
-			### What is the diffrence from the original pipeline?
-		============================================================================================
+### How  the parallel mapgd pipeline works? What is the diffrence from the original pipeline?
 
 In the original pipeline, mapgd proview files are produced by the following command:
 	=========================================================================
