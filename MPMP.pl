@@ -25,24 +25,25 @@ Copyright (c) 2018 to:
 use warnings;
 use strict;
 
-if(@ARGV == 0)
+if(@ARGV < 2)
 {
 	print "\n\n\t\tPlease input the <data directory> and <output file name>.\n\n"; 
 	exit
 }
+my $DATA_DIR=trim($ARGV[0]);
 
-if($ARGV[0] eq "")
+if($DATA_DIR eq "")
 {
 	print "\n\n Please input the data directory and output file name.\n\n"; 
 	exit
 }
-my $DATA_DIR=$ARGV[0];
+
+
 if(!(-e (glob($DATA_DIR))[0]))
 {
 	print "
 	
-	The 1nd input (args) is the data directory. 
-	The data directory is not found:
+	The 1nd input (args) is the data directory, but it is not found:
 				$DATA_DIR
 	
 	"; 
@@ -57,9 +58,9 @@ my $emailaddress='ouqd@hotmail.com';
 my $HeaderFile="$DATA_DIR/PA42.header";
 my $walltime="120:00:00";
 	
-my $Sample_ID=$ARGV[1];; 
+my $Sample_ID=trim($ARGV[1]); 
 
-if ($Sample_ID eq "")
+if ( $Sample_ID eq "")
 {
 	print "
 
@@ -292,4 +293,8 @@ else
 	"; 
 }
 
-print "Population/Sample_ID $Sample_ID will be used as the names of the output files.\n\n";
+print "Population/Sample_ID is: $Sample_ID, will be used as the names of the output files.\n\n";
+
+sub ltrim { my $s = shift; $s =~ s/^\s+//;       return $s };
+sub rtrim { my $s = shift; $s =~ s/\s+$//;       return $s };
+sub  trim { my $s = shift; $s =~ s/^\s+|\s+$//g; return $s };
