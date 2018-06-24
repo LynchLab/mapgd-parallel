@@ -65,7 +65,7 @@ To reduce the computation time, in this new pipeline produced by MPMP.pl (mapgd-
 	
 	========================================================================
 
-In this way, mapgd proview file is produced for each of the 96 clones. Because all processes can be run simutaneously in independent threads, the computation time is greatly deduced. It also helps to identify a bad mpileup file more conviniently.
+In this way, mapgd proview file is produced for each of the 96 clones. Because all processes can be run simutaneously in independent threads, the computation time is greatly reduced. It also helps to identify a bad mpileup file more conviniently.
 
 Then, the produced mapgd proview files are combined by using a homemade java program (CombineProview.java), which will find all mapgd proview files are combined them into one:
 
