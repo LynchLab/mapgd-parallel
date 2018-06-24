@@ -3,9 +3,9 @@
 #### Curated and updated by Xiaolong Wang <ouqd@hotmail.com>
 #### Initialized May 28, 2018
 
-		==============================================================
-			How to make and run the parallel mapgd pipeline  
-		==============================================================
+		============================================================================================
+			####How to make and run the parallel mapgd pipeline  
+		============================================================================================
 		
 After mapping all the reads to the reference genome, you have got a number of .mpileup files: 
 
@@ -39,7 +39,11 @@ After mapping all the reads to the reference genome, you have got a number of .m
 	
 This parallel mapgd pipeline will produce mapgd proview files in parallel and combine all mapgd proview files into one using a java program (CombineProview.java), and then do the rest of the mapgd pipeline the same as the original mapgd pipeline(mapgd_original.pbs).
 
-Note: 
+		============================================================================================
+			   ####How  the parallel mapgd pipeline works and 
+			####what is the diffrence from the original pipeline?
+		============================================================================================
+
 In the original pipeline, mapgd proview files are produced by the following command:
 	=========================================================================
  
@@ -65,8 +69,6 @@ To reduce the computation time, in this new pipeline produced by MPMP.pl (mapgd-
 	
 	========================================================================
 
-In this way, mapgd proview file is produced for each of the 96 clones. Because all processes can be run simutaneously in independent threads, the computation time is greatly reduced. It also helps to identify a bad mpileup file more conviniently.
-
 Then, the produced mapgd proview files are combined by using a homemade java program (CombineProview.java), which will find all mapgd proview files are combined them into one:
 
 	=============================================================
@@ -75,5 +77,6 @@ Then, the produced mapgd proview files are combined by using a homemade java pro
 		
 	=============================================================
 	
-		
+In this way, mapgd proview file is produced for each of the 96 clones. Because all processes can be run simutaneously in independent threads, the computation time is greatly reduced. It also helps to identify a bad mpileup file more conviniently. When one of the mpileup file is invalid and breaks one of the mapgd threads, it will not break the whole pipeline. Just fix or ignore the bad one, no need to re-compute the whole population.
+	
 ======================END=======================================
