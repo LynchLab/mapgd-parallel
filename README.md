@@ -43,7 +43,7 @@ This parallel mapgd pipeline will produce a mapgd proview file for each mpileup 
 
 ===========================================================================
 ### How does the parallel mapgd pipeline work? 
---What is the diffrence from the original pipeline?
+	--What is the diffrence from the original pipeline?
 ===========================================================================
 
 Comparing with the original mapgd pipeline, the only difference is the way how mapgd proview files are produced.
@@ -56,7 +56,7 @@ In the original pipeline, mapgd proview files are produced by the following comm
 		
  	=========================================================================
 
-mapgd will find all mpileup files and then produce a proview file for each mpileup file one by one. This is simple and straightforward. However, it is very slow because it is not fully parallelized. This step may takes up to 50-100 hours for a population with 96 clones. 
+The mapgd program will find all mpileup files and then produce a proview file for each mpileup file one by one. This is simple and straightforward. However, it is very slow because it is not fully parallelized. This step may takes up to 50-100 hours for a population with 96 clones. 
 
 To reduce the computation time, in this new pipeline (mapgd-parallel.pbs, produced by MPMP.pl), the proview files are generated independently and in parallel:
  
@@ -76,13 +76,13 @@ To reduce the computation time, in this new pipeline (mapgd-parallel.pbs, produc
 
 Then, the mapgd proview files produced are combined by using a java program (CombineProview.java), which will find all mapgd proview files and combined them into one (and transform the file format from one clone to multi-clone):
 
-	=============================================================
+	=========================================================================================================
 	
 		java -cp /PATH/ CombineProview <DATA_DIR> <output>
 		
 		Note: Please be sure that /PATH/ must contain the java class file (CombineProview.class)
 		
-	=============================================================
+	=========================================================================================================
 	
 In this way, mapgd proview files are produced for each of the clones in a population. Because all processes can be run simutaneously in independent threads, the computation time is greatly reduced in a multi-core computer.
 
