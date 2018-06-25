@@ -319,7 +319,7 @@ echo ===============================================================
 echo 2. Combine all mapgd proview files into one.
 echo ===============================================================
 set -x
-time java -cp java -cp ~/daphnia/mapgd-parallel/ CombineProview /N/dc2/scratch/xw63/PA2013/Bwa PA2013 CombineProview /N/dc2/scratch/xw63/PA2013/Novoalign PA2013
+time java -cp ~/daphnia/mapgd-parallel/ CombineProview /N/dc2/scratch/xw63/PA2013/Novoalign PA2013
 set +x
 echo ===============================================================
 echo 3. Exclude mtDNA data from the pro file.
