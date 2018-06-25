@@ -1,30 +1,13 @@
 #! /N/soft/rhel7/perl/gnu/5.24.1/bin/perl -w
-=pod
-======================================================================
- This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
 
-		Usage: perl MPMP.pl <DATA_DIR> <Output>	
-
-=====================================================================
-Written by:                   
-Xiaolong Wang
-email: ouqd@hotmail.com
-website: http://www.DNAplusPro.com
-=====================================================================
-In hope useful in genomics and bioinformatics studies.
-This software is released under GNU/GPL license
-Copyright (c) 2018 to:
-1. Lynch Lab, CME, Biodesign, Arizona State University
-2. Lab of Molecular and Computational Biology, Ocean University of China,
-=====================================================================
-=cut
-	print "
- This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
-		
-	Usage: perl MPMP.pl <DATA_DIR> <Output>	"; 
 use warnings;
 use strict;
 
+print "
+ This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
+		
+	Usage: perl MPMP.pl <DATA_DIR> <Output>	"; 
+	
 if(@ARGV < 2)
 {
 	print "\n\n\t\tPlease input the <data directory> and <output file name>.\n\n"; 
@@ -50,10 +33,21 @@ if(!(-e (glob($DATA_DIR))[0]))
 	exit
 }
 
+my $str_len = length($DATA_DIR);
+my $last_slash=rindex($DATA_DIR,"/");
+if ($last_slash==$str_len-1)
+{
+	$DATA_DIR=substr $DATA_DIR, 0, $str_len-1;
+}
+$str_len = length($DATA_DIR);
+my $last_slash=rindex($DATA_DIR,"\\");
+if ($last_slash==$str_len-1)
+{
+	$DATA_DIR=substr $DATA_DIR, 0, $str_len-1;
+}
 print "\n The data directory is:
 				$DATA_DIR
 	"; 
-
 my $emailaddress='ouqd@hotmail.com';
 my $HeaderFile="$DATA_DIR/PA42.header";
 my $walltime="120:00:00";
@@ -121,7 +115,7 @@ opendir (DIR, $DATA_DIR) or die "can't open the directory!";
 @dir = readdir DIR;
 foreach $file (@dir) 
 {
-	my $str_len = length($file);
+	$str_len = length($file);
 	my $last_dot=rindex($file,".");
 	$OUTPUT=substr $file, 0, $last_dot;
 	my $extension=substr $file, $last_dot, $str_len-$last_dot;	
@@ -246,38 +240,45 @@ echo ===============================================================
 
 ";	
 		
-if ($n1>0)
+if ($n1==0)
 {
-	print "\n\n$n1 mpileup file(s) are found in $DATA_DIR.\n\n";
-}
-else
-{
-	print "\n\nNo mpileup file is found in the data directory:
-		$DATA_DIR
-	the mpileup files must be named as:
-	$Sample_ID-001.mpileup 
-	$Sample_ID-002.mpileup 
-	
-		......
-	
-	$Sample_ID-100.mpileup 
+	print "\n\nNo .mpileup file is found in the data directory:
+				$DATA_DIR
+		
+		
 	";
 	
 	exit;
 }
+my $n3=$n1-$n2;
 
 if ($n2>0)
 {
 	print "
 	
-	$n2 of the mpileup file(s) have no mapgd proview file(s).
+    The data directory is:
+				$DATA_DIR
+				
+	$n1 mpileup file(s) are found. 
+	$n3 of them have existing proveiw files.
+	$n2 of them have no mapgd proview file(s). 
+	A parallel mapgd pipeline (./mapgd-parallel.pbs) is produced.
 	
-	Submit the following pbs to run mapgd pipeline in parallel: 
+	To produce proview files in parallel, simply submit and run: 
 	============================================================
 
 		qsub ./mapgd-parallel.pbs
 	
 	============================================================
+		
+	\"$Sample_ID\" will be used as the initials of the names of the output proview files.
+	
+	   When complete, $n2 proview file(s) will be produced and combined into
+	one proview file. And then, it will proceed to the rest of the original mapgd pipeline.
+	 
+	  Plese note that the $n3 existing proveiw files in the data 
+	dir will also be combined and included in the downstream analysis.
+	
 	
 	
 	";
@@ -293,8 +294,26 @@ else
 	"; 
 }
 
-print "Population/Sample_ID is: $Sample_ID, will be used as the names of the output files.\n\n";
-
 sub ltrim { my $s = shift; $s =~ s/^\s+//;       return $s };
 sub rtrim { my $s = shift; $s =~ s/\s+$//;       return $s };
 sub  trim { my $s = shift; $s =~ s/^\s+|\s+$//g; return $s };
+
+=pod
+======================================================================
+ This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
+
+		Usage: perl MPMP.pl <DATA_DIR> <Output>	
+
+=====================================================================
+Written by:                   
+Xiaolong Wang
+email: ouqd@hotmail.com
+website: http://www.DNAplusPro.com
+=====================================================================
+In hope useful in genomics and bioinformatics studies.
+This software is released under GNU/GPL license
+Copyright (c) 2018 to:
+1. Lynch Lab, CME, Biodesign, Arizona State University
+2. Lab of Molecular and Computational Biology, Ocean University of China,
+=====================================================================
+=cut
