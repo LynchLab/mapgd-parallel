@@ -3,7 +3,7 @@
 use warnings;
 use strict;
 #Specify the path to mapgd_parallel
-$mapgd_parallel="~/daphnia/mapgd-parallel/";
+my $mapgd_parallel="~/daphnia/mapgd-parallel/";
 
 print "
  This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
@@ -42,7 +42,7 @@ if ($last_slash==$str_len-1)
 	$DATA_DIR=substr $DATA_DIR, 0, $str_len-1;
 }
 $str_len = length($DATA_DIR);
-my $last_slash=rindex($DATA_DIR,"\\");
+$last_slash=rindex($DATA_DIR,"\\");
 if ($last_slash==$str_len-1)
 {
 	$DATA_DIR=substr $DATA_DIR, 0, $str_len-1;
@@ -252,6 +252,7 @@ if ($n1==0)
 	
 	exit;
 }
+
 my $n3=$n1-$n2;
 
 if ($n2>0)
@@ -277,11 +278,6 @@ if ($n2>0)
 	
 	   When complete, $n2 proview file(s) will be produced and combined into
 	one proview file. And then, it will proceed to the rest of the original mapgd pipeline.
-	 
-	  Plese note that the $n3 existing proveiw files in the data 
-	dir will also be combined and included in the downstream analysis.
-	
-	
 	
 	";
 }
@@ -295,6 +291,17 @@ else
 	
 	"; 
 }
+
+if ($n3>0)
+{
+	print "
+		 
+	  Plese note that the $n3 existing proveiw files in the data 
+	dir will also be combined and included in the downstream analysis.
+		
+	";
+}
+
 
 sub ltrim { my $s = shift; $s =~ s/^\s+//;       return $s };
 sub rtrim { my $s = shift; $s =~ s/\s+$//;       return $s };
