@@ -43,7 +43,7 @@ This parallel mapgd pipeline will produce a mapgd proview file for each mpileup 
 
 ===========================================================================
 ### How does the parallel mapgd pipeline work? 
-	--What is the diffrence from the original pipeline?
+--What is the diffrence from the original pipeline?
 ===========================================================================
 
 Comparing with the original mapgd pipeline, the only difference is the way how mapgd proview files are produced.
@@ -78,7 +78,9 @@ Then, the mapgd proview files produced are combined by using a java program (Com
 
 	=============================================================
 	
-		java -cp ./ CombineProview <DATA_DIR> <output>
+		java -cp /PATH/ CombineProview <DATA_DIR> <output>
+		
+		Note: Please be sure that /PATH/ must contain the java class file (CombineProview.class)
 		
 	=============================================================
 	
