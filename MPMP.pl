@@ -157,7 +157,7 @@ echo ===============================================================
 echo 2. Combine all mapgd proview files into one.
 echo ===============================================================
 set -x
-time java -cp java -cp $mapgd_parallel CombineProview /N/dc2/scratch/xw63/PA2013/Bwa PA2013 CombineProview $DATA_DIR $Sample_ID
+time java -cp $mapgd_parallel CombineProview $DATA_DIR $Sample_ID
 set +x
 echo ===============================================================
 echo 3. Exclude mtDNA data from the pro file.
