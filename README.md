@@ -43,7 +43,7 @@ This parallel mapgd pipeline will produce a mapgd proview file for each mpileup 
 
 ===========================================================================
 ### How does the parallel mapgd pipeline work? 
---What is the diffrence from the original pipeline?
+	--What is the diffrence from the original pipeline?
 ===========================================================================
 
 Comparing with the original mapgd pipeline, the only difference is the way how mapgd proview files are produced.
