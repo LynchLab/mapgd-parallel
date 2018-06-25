@@ -2,6 +2,8 @@
 
 use warnings;
 use strict;
+#Specify the path to mapgd_parallel
+$mapgd_parallel="~/daphnia/mapgd-parallel/";
 
 print "
  This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
@@ -155,7 +157,7 @@ echo ===============================================================
 echo 2. Combine all mapgd proview files into one.
 echo ===============================================================
 set -x
-time java -cp ~/daphnia/DaphniaVariantCall CombineProview $DATA_DIR $Sample_ID
+time java -cp java -cp $mapgd_parallel CombineProview /N/dc2/scratch/xw63/PA2013/Bwa PA2013 CombineProview $DATA_DIR $Sample_ID
 set +x
 echo ===============================================================
 echo 3. Exclude mtDNA data from the pro file.
