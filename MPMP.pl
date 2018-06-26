@@ -106,8 +106,10 @@ date
 ";
 
 my $n=0;
-my $n1=0;
-my $n2=0;
+my $n_mpileup=0;
+my $n_proview_not_exist=0;
+my $n_proview_all=0;
+my $n_proview_exist=0;
 
 my $file;
 my @dir;
@@ -122,18 +124,23 @@ foreach $file (@dir)
 	$OUTPUT=substr $file, 0, $last_dot;
 	my $extension=substr $file, $last_dot, $str_len-$last_dot;	
 	#print $OUTPUT." ".$extension."\n ";
+	
+	if ( $extension eq ".proview") {
+		$n_proview_all=$n_proview_all+1;	
+	}
 	if ( $extension eq ".mpileup") {
-		$n1=$n1+1;	
+		$n_mpileup=$n_mpileup+1;	
 		
-		print "\n$n1: $file --> $OUTPUT.proview";
+		print "\n$n_mpileup: $file --> $OUTPUT.proview";
 		
 		if(-e "$DATA_DIR/$OUTPUT.proview")
 		{
 			print ": already exist.\n "; 
+			$n_proview_exist=$n_proview_exist+1;	
 		}
 		else
 		{		
-			$n2=$n2+1;	
+			$n_proview_not_exist=$n_proview_not_exist+1;	
 			print ": will produce.\n "; 
 			print OUT1 "
 			
@@ -241,62 +248,43 @@ echo =============Task completed.===================
 echo ===============================================================
 
 ";	
-		
-if ($n1==0)
-{
-	print "\n\nNo .mpileup file is found in the data directory:
-				$DATA_DIR
-		
-		
-	";
-	
-	exit;
-}
-
-my $n3=$n1-$n2;
-
-if ($n2>0)
-{
-	print "
-	
-    The data directory is:
-				$DATA_DIR
-				
-	$n1 mpileup file(s) are found. 
-	$n3 of them have existing proveiw files.
-	$n2 of them have no mapgd proview file(s). 
+if (($n_mpileup+$n_proview_all)>0)
+{		
+print "
+	$n_mpileup mpileup file(s) are found. 
+	$n_proview_exist of them have existing proveiw files.
+	$n_proview_not_exist of them have no mapgd proview file(s). 
+	and there are $n_proview_all existing proveiw files.
 	A parallel mapgd pipeline (./mapgd-parallel.pbs) is produced.
 	
-	To produce proview files in parallel, simply submit and run: 
+	To proceed, simply submit and run: 
 	============================================================
-
-		qsub ./mapgd-parallel.pbs
-	
+		qsub ./mapgd-parallel.pbs	
 	============================================================
 		
-	\"$Sample_ID\" will be used as the initials of the names of the output proview files.
+	\"$Sample_ID.combined\" will be used as the initial of the names of the output files.
 	
-	   When complete, $n2 proview file(s) will be produced and combined into
-	one proview file. And then, it will proceed to the rest of the original mapgd pipeline.
+	When complete, $n_proview_not_exist proview file(s) will be produced and 
+	$n_proview_not_exist+$n_proview_all  proview file(s) will be combined into one proview file.
+	And then, it will proceed to the rest of the original mapgd pipeline.
 	
 	";
 }
-else
-{
-	print "
-	
+
+if ($n_mpileup>0&&$n_proview_not_exist==0)
+{	
+print "
 	All mpileup file(s) already have proview file(s) exist.
 	
-	If you want to reproduce proview file(s), please delete it firstly.
+	If you want to reproduce proview file(s), please remove the existing proview files firstly.
 	
 	"; 
 }
 
-if ($n3>0)
+if ($n_proview_all>0)
 {
 	print "
-		 
-	  Plese note that the $n3 existing proveiw files in the data 
+	Plese note that the $n_proview_all existing proveiw files in the data 
 	dir will also be combined and included in the downstream analysis.
 		
 	";
