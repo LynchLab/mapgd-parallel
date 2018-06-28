@@ -8,6 +8,10 @@
 #PBS -j oe
 
 # Updated on 05/28/2018
+# This pipeline pbs is produced by the perl script:
+# perl Make_pipelines-Genome-mapping.pl /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/ PA2013 
+# Date and time: Thu Jun 28 17:42:31 2018
+
 set +x
 
 module rm gcc
