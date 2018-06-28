@@ -117,7 +117,7 @@ if (($n_mpileup+$n_proview_all)==0)
 	print "Nothing to do, program will exit!\n";
 	exit;
 }
-
+my $localtime = localtime();
 open OUT1, ">./mapgd-parallel.pbs" or die "cannot open file: $!";
 print OUT1 
 "#!/bin/bash 
@@ -130,6 +130,10 @@ print OUT1
 #PBS -j oe
 
 # Updated on 05/28/2018
+# This pipeline pbs is produced by the perl script:
+# perl Make_pipelines-Genome-mapping.pl $ARGV[0] $ARGV[1] $ARGV[2]
+# Date and time: $localtime
+
 set +x
 
 module rm gcc
