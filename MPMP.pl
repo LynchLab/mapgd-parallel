@@ -246,7 +246,7 @@ time awk \'{if (\$3 != \"MN_FREQ\" && \$3 >= 0.0 && \$3 <= 1.0) print}\' $DATA_D
 set +x
 echo ===============================================================
 echo 6-2. Randomly pick a specified number - 200000 of SNPs from the file of genotype likelihoods 
-===============================================================
+echo ===============================================================
 
 set -x
 time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/extras/sub_sample.py $DATA_DIR/$Sample_ID.combined_F.genotype -N 200000 > $DATA_DIR/$Sample_ID.combined_F_200K.genotype
