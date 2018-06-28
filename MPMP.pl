@@ -2,11 +2,21 @@
 
 use warnings;
 use strict;
+#Specify the path to mapgd_parallel
 
 print "
  This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
 		
 	Usage: perl MPMP.pl <DATA_DIR> <Output>	"; 
+my $n=0;
+my $n_mpileup=0;
+my $n_proview_not_exist=0;
+my $n_proview_all=0;
+my $n_proview_exist=0;
+my $mapgd_parallel="~/daphnia/mapgd-parallel/";
+my $file;
+my @dir;
+my $OUTPUT=" ";
 	
 if(@ARGV < 2)
 {
@@ -35,12 +45,13 @@ if(!(-e (glob($DATA_DIR))[0]))
 
 my $str_len = length($DATA_DIR);
 my $last_slash=rindex($DATA_DIR,"/");
+
 if ($last_slash==$str_len-1)
 {
 	$DATA_DIR=substr $DATA_DIR, 0, $str_len-1;
 }
 $str_len = length($DATA_DIR);
-my $last_slash=rindex($DATA_DIR,"\\");
+$last_slash=rindex($DATA_DIR,"\\");
 if ($last_slash==$str_len-1)
 {
 	$DATA_DIR=substr $DATA_DIR, 0, $str_len-1;
@@ -68,8 +79,46 @@ print "Population/Sample_ID is: $Sample_ID\n\n";
 
 #Now we find the mpileup files and produce a batch file for them
 
-open OUT1, ">./mapgd-parallel.pbs" or die "cannot open file: $!";
+opendir (DIR, $DATA_DIR) or die "can't open the directory!";
+@dir = readdir DIR;
+foreach $file (@dir) 
+{
+	$str_len = length($file);
+	my $last_dot=rindex($file,".");
+	$OUTPUT=substr $file, 0, $last_dot;
+	my $extension=substr $file, $last_dot, $str_len-$last_dot;	
+	
+	if ( $extension eq ".proview") {
+		$n_proview_all+=1;	
+	}
+	if ( $extension eq ".mpileup") {
+		$n_mpileup+=1;			
+		if(-e "$DATA_DIR/$OUTPUT.proview")
+		{
+			$n_proview_exist+=1;	
+		}
+		else
+		{		
+			$n_proview_not_exist+=1;	
+		}			
+	}
+}
 
+if ($n_mpileup==0)
+{
+	print "No mpileup file found!\n";
+}
+if ($n_proview_all==0)
+{
+	print "No proview file found!\n";
+}
+if (($n_mpileup+$n_proview_all)==0)
+{
+	print "Nothing to do, program will exit!\n";
+	exit;
+}
+my $localtime = localtime();
+open OUT1, ">./mapgd-parallel.pbs" or die "cannot open file: $!";
 print OUT1 
 "#!/bin/bash 
 #PBS -N mapgd-parallel-$Sample_ID
@@ -81,6 +130,10 @@ print OUT1
 #PBS -j oe
 
 # Updated on 05/28/2018
+# This pipeline pbs is produced by the perl script:
+# perl Make_pipelines-Genome-mapping.pl $ARGV[0] $ARGV[1] $ARGV[2]
+# Date and time: $localtime
+
 set +x
 
 module rm gcc
@@ -103,14 +156,6 @@ set -x
 date
 ";
 
-my $n=0;
-my $n1=0;
-my $n2=0;
-
-my $file;
-my @dir;
-my $OUTPUT=" ";
-
 opendir (DIR, $DATA_DIR) or die "can't open the directory!";
 @dir = readdir DIR;
 foreach $file (@dir) 
@@ -119,11 +164,12 @@ foreach $file (@dir)
 	my $last_dot=rindex($file,".");
 	$OUTPUT=substr $file, 0, $last_dot;
 	my $extension=substr $file, $last_dot, $str_len-$last_dot;	
+
 	#print $OUTPUT." ".$extension."\n ";
+	
 	if ( $extension eq ".mpileup") {
-		$n1=$n1+1;	
 		
-		print "\n$n1: $file --> $OUTPUT.proview";
+		print "\n$n_mpileup: $file --> $OUTPUT.proview";
 		
 		if(-e "$DATA_DIR/$OUTPUT.proview")
 		{
@@ -131,7 +177,6 @@ foreach $file (@dir)
 		}
 		else
 		{		
-			$n2=$n2+1;	
 			print ": will produce.\n "; 
 			print OUT1 "
 			
@@ -145,6 +190,12 @@ time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i $file -
 	}
 }
 
+if (($n_mpileup+$n_proview_all)==0)
+{
+	print "No mpileup or proview file found!\n";
+	exit;
+}
+
 print OUT1 
 "
 wait
@@ -155,16 +206,15 @@ echo ===============================================================
 echo 2. Combine all mapgd proview files into one.
 echo ===============================================================
 set -x
-time java -cp ~/daphnia/DaphniaVariantCall CombineProview $DATA_DIR $Sample_ID
+time java -cp $mapgd_parallel CombineProview $DATA_DIR $Sample_ID
 set +x
 echo ===============================================================
 echo 3. Exclude mtDNA data from the pro file.
 echo ===============================================================
-echo if mtDNA sequence is not included in the reference genome, skip this step:
-echo if mtDNA sequence is included in the reference genome, execute this:
-set -x
-echo time grep -v '^PA42_mt_genome' $Sample_ID.combined.pro.txt \> Nuc_$Sample_ID.combined.pro.txt
-echo mv Nuc_$Sample_ID.combined.Pro.txt $Sample_ID.combined.pro.txt
+echo  if mtDNA sequence is not included in the reference genome, skip this step:
+echo  if mtDNA sequence is included in the reference genome, execute the following commands:
+echo  mv PA2013.combined.Pro.txt PA2013.combined.Nuc+mt.pro.txt
+echo  time grep -v '^PA42_mt_genome' PA2013.combined.Nuc+mt.pro.txt \> PA2013.combined.pro.txt
 set +x
 
 echo ===============================================================
@@ -200,7 +250,7 @@ time awk \'{if (\$3 != \"MN_FREQ\" && \$3 >= 0.0 && \$3 <= 1.0) print}\' $DATA_D
 set +x
 echo ===============================================================
 echo 6-2. Randomly pick a specified number - 200000 of SNPs from the file of genotype likelihoods 
-===============================================================
+echo ===============================================================
 
 set -x
 time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/extras/sub_sample.py $DATA_DIR/$Sample_ID.combined_F.genotype -N 200000 > $DATA_DIR/$Sample_ID.combined_F_200K.genotype
@@ -239,60 +289,48 @@ echo =============Task completed.===================
 echo ===============================================================
 
 ";	
-		
-if ($n1==0)
-{
-	print "\n\nNo .mpileup file is found in the data directory:
-				$DATA_DIR
-		
-		
-	";
-	
-	exit;
-}
-my $n3=$n1-$n2;
-
-if ($n2>0)
-{
-	print "
-	
-    The data directory is:
-				$DATA_DIR
-				
-	$n1 mpileup file(s) are found. 
-	$n3 of them have existing proveiw files.
-	$n2 of them have no mapgd proview file(s). 
+if (($n_mpileup+$n_proview_all)>0)
+{		
+print "
+	$n_mpileup mpileup file(s) are found. 
+	$n_proview_exist of them have existing proveiw files.
+	$n_proview_not_exist of them have no mapgd proview file(s). 
+	and there are $n_proview_all existing proveiw files.
 	A parallel mapgd pipeline (./mapgd-parallel.pbs) is produced.
 	
-	To produce proview files in parallel, simply submit and run: 
+	To proceed, simply submit and run: 
 	============================================================
-
-		qsub ./mapgd-parallel.pbs
-	
+		qsub ./mapgd-parallel.pbs	
 	============================================================
 		
-	\"$Sample_ID\" will be used as the initials of the names of the output proview files.
+	\"$Sample_ID.combined\" will be used as the initial of the names of the output files.
 	
-	   When complete, $n2 proview file(s) will be produced and combined into
-	one proview file. And then, it will proceed to the rest of the original mapgd pipeline.
-	 
-	  Plese note that the $n3 existing proveiw files in the data 
-	dir will also be combined and included in the downstream analysis.
-	
-	
+	When complete, $n_proview_not_exist proview file(s) will be produced and 
+	$n_proview_not_exist+$n_proview_all  proview file(s) will be combined into one proview file.
+	And then, it will proceed to the rest of the original mapgd pipeline.
 	
 	";
 }
-else
-{
-	print "
-	
+
+if ($n_mpileup>0&&$n_proview_not_exist==0)
+{	
+print "
 	All mpileup file(s) already have proview file(s) exist.
 	
-	If you want to reproduce proview file(s), please delete it firstly.
+	If you want to reproduce proview file(s), please remove the existing proview files firstly.
 	
 	"; 
 }
+
+if ($n_proview_all>0)
+{
+	print "
+	Plese note that the $n_proview_all existing proveiw files in the data 
+	dir will also be combined and included in the downstream analysis.
+		
+	";
+}
+
 
 sub ltrim { my $s = shift; $s =~ s/^\s+//;       return $s };
 sub rtrim { my $s = shift; $s =~ s/\s+$//;       return $s };
