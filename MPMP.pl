@@ -3,12 +3,20 @@
 use warnings;
 use strict;
 #Specify the path to mapgd_parallel
-my $mapgd_parallel="~/daphnia/mapgd-parallel/";
 
 print "
  This parallel mapgd pipeline finds all mpileup files in <DATA_DIR>, produces mapgd proview files in parallel, then combines all mapgd proview files into one using a java program (CombineProview.java), and then does the rest of the mapgd pipeline for population genetics computation.
 		
 	Usage: perl MPMP.pl <DATA_DIR> <Output>	"; 
+my $n=0;
+my $n_mpileup=0;
+my $n_proview_not_exist=0;
+my $n_proview_all=0;
+my $n_proview_exist=0;
+my $mapgd_parallel="~/daphnia/mapgd-parallel/";
+my $file;
+my @dir;
+my $OUTPUT=" ";
 	
 if(@ARGV < 2)
 {
@@ -37,6 +45,7 @@ if(!(-e (glob($DATA_DIR))[0]))
 
 my $str_len = length($DATA_DIR);
 my $last_slash=rindex($DATA_DIR,"/");
+
 if ($last_slash==$str_len-1)
 {
 	$DATA_DIR=substr $DATA_DIR, 0, $str_len-1;
@@ -70,8 +79,46 @@ print "Population/Sample_ID is: $Sample_ID\n\n";
 
 #Now we find the mpileup files and produce a batch file for them
 
-open OUT1, ">./mapgd-parallel.pbs" or die "cannot open file: $!";
+opendir (DIR, $DATA_DIR) or die "can't open the directory!";
+@dir = readdir DIR;
+foreach $file (@dir) 
+{
+	$str_len = length($file);
+	my $last_dot=rindex($file,".");
+	$OUTPUT=substr $file, 0, $last_dot;
+	my $extension=substr $file, $last_dot, $str_len-$last_dot;	
+	
+	if ( $extension eq ".proview") {
+		$n_proview_all+=1;	
+	}
+	if ( $extension eq ".mpileup") {
+		$n_mpileup+=1;			
+		if(-e "$DATA_DIR/$OUTPUT.proview")
+		{
+			$n_proview_exist+=1;	
+		}
+		else
+		{		
+			$n_proview_not_exist+=1;	
+		}			
+	}
+}
 
+if ($n_mpileup==0)
+{
+	print "No mpileup file found!\n";
+}
+if ($n_proview_all==0)
+{
+	print "No proview file found!\n";
+}
+if (($n_mpileup+$n_proview_all)==0)
+{
+	print "Nothing to do, program will exit!\n";
+	exit;
+}
+
+open OUT1, ">./mapgd-parallel.pbs" or die "cannot open file: $!";
 print OUT1 
 "#!/bin/bash 
 #PBS -N mapgd-parallel-$Sample_ID
@@ -105,16 +152,6 @@ set -x
 date
 ";
 
-my $n=0;
-my $n_mpileup=0;
-my $n_proview_not_exist=0;
-my $n_proview_all=0;
-my $n_proview_exist=0;
-
-my $file;
-my @dir;
-my $OUTPUT=" ";
-
 opendir (DIR, $DATA_DIR) or die "can't open the directory!";
 @dir = readdir DIR;
 foreach $file (@dir) 
@@ -123,24 +160,19 @@ foreach $file (@dir)
 	my $last_dot=rindex($file,".");
 	$OUTPUT=substr $file, 0, $last_dot;
 	my $extension=substr $file, $last_dot, $str_len-$last_dot;	
+
 	#print $OUTPUT." ".$extension."\n ";
 	
-	if ( $extension eq ".proview") {
-		$n_proview_all=$n_proview_all+1;	
-	}
 	if ( $extension eq ".mpileup") {
-		$n_mpileup=$n_mpileup+1;	
 		
 		print "\n$n_mpileup: $file --> $OUTPUT.proview";
 		
 		if(-e "$DATA_DIR/$OUTPUT.proview")
 		{
 			print ": already exist.\n "; 
-			$n_proview_exist=$n_proview_exist+1;	
 		}
 		else
 		{		
-			$n_proview_not_exist=$n_proview_not_exist+1;	
 			print ": will produce.\n "; 
 			print OUT1 "
 			
@@ -152,6 +184,12 @@ time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i $file -
 	{
 		#print "$file: Not a mpileup file!\n";
 	}
+}
+
+if (($n_mpileup+$n_proview_all)==0)
+{
+	print "No mpileup or proview file found!\n";
+	exit;
 }
 
 print OUT1 
