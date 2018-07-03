@@ -59,6 +59,7 @@ if ($last_slash==$str_len-1)
 print "\n The data directory is:
 				$DATA_DIR
 	"; 
+	
 my $emailaddress='ouqd@hotmail.com';
 my $HeaderFile="$DATA_DIR/PA42.header";
 my $walltime="120:00:00";
@@ -117,6 +118,7 @@ if (($n_mpileup+$n_proview_all)==0)
 	print "Nothing to do, program will exit!\n";
 	exit;
 }
+
 my $localtime = localtime();
 open OUT1, ">./mapgd-parallel.pbs" or die "cannot open file: $!";
 print OUT1 
@@ -131,7 +133,8 @@ print OUT1
 
 # Updated on 05/28/2018
 # This pipeline pbs is produced by the perl script:
-# perl Make_pipelines-Genome-mapping.pl $ARGV[0] $ARGV[1] $ARGV[2]
+# 		perl MPMP.pl $ARGV[0] $ARGV[1] 
+
 # Date and time: $localtime
 
 set +x
@@ -147,7 +150,9 @@ set +x
 echo ===============================================================
 echo 0. Make a header file
 echo ===============================================================
-time samtools view -H PA2013-001-RG_Sorted_dedup_realigned_Clipped.bam \> $HeaderFile
+set -x
+
+time samtools view -H $Sample_ID-001-qFf-RG_Sorted_dedup_realigned_Clipped.bam \> $HeaderFile
 
 echo ===============================================================
 echo 1. Make a pro file of nucleotide-read quartets -counts of A, C, G, and T, from each of the mpileup files of the clones.
@@ -155,7 +160,7 @@ echo ===============================================================
 set -x
 date
 ";
-
+close(DIR);
 opendir (DIR, $DATA_DIR) or die "can't open the directory!";
 @dir = readdir DIR;
 foreach $file (@dir) 
@@ -214,7 +219,7 @@ echo ===============================================================
 echo  if mtDNA sequence is not included in the reference genome, skip this step:
 echo  if mtDNA sequence is included in the reference genome, execute the following commands:
 echo  mv PA2013.combined.Pro.txt PA2013.combined.Nuc+mt.pro.txt
-echo  time grep -v '^PA42_mt_genome' PA2013.combined.Nuc+mt.pro.txt \> PA2013.combined.pro.txt
+echo  time grep -v '^PA42_mt_genome' PA2013.combined.Nuc+mt.pro.txt \\\> PA2013.combined.pro.txt
 set +x
 
 echo ===============================================================
