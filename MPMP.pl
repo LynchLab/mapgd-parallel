@@ -62,7 +62,7 @@ print "\n The data directory is:
 	
 my $emailaddress='ouqd@hotmail.com';
 my $HeaderFile="$DATA_DIR/PA42.header";
-my $walltime="60:00:00";
+my $walltime="100:00:00";
 	
 my $SampleID=trim($ARGV[1]); 
 
