@@ -13,7 +13,12 @@ website: http://www.DNAplusPro.com
 =====================================================================
 In hope useful in genomics and bioinformatics studies.
 This software is released under GNU/GPL license
-Copyright (c) 2015, Ocean University of China
+Copyright (c) 2018
+1. Lynch Lab, CME, Biodesign, Arizona State University
+2. Lab of Molecular and Computational Biology, Ocean University of China
+
+You may use it or change it as you wish. 
+We will be glad to know if you find it is useful. 
 =====================================================================
 */
 
