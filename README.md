@@ -86,8 +86,10 @@ Then, the mapgd proview files produced are combined by using a java program (Com
 	
 In this way, mapgd proview files are produced for each of the clones in a population. Because all processes can be run simutaneously in independent threads, the computation time is reduced in a multi-core computer (the more CPUs, the less real time needed).
 
-In addition, it also helps to identify a bad mpileup file (if any) more conviniently. When one of the mpileup files is invalid, it breaks only one of the mapgd proview threads, and will not break the whole pipeline. Just fix (or ignore) the bad one, no need to re-compute the whole population. 
+In addition,when you found one or more mpileup files or proview files are invalid, it helps to identify the bad mpileup file(s) more conviniently. When one of the mpileup files is invalid, it breaks only its own mapgd proview threads and will not break the whole pipeline. Just fix (or ignore) the bad one, no need to rebuild proview files for the whole population.
 
-Especially, this pipeline producer (MPMP.pl) will automatically detect mpileup files and proview files, and produce a proview file for each of the mpileup files if and only if a corresponding proview file does not exist.  So, when you found a few mpileup files or proview files are invalid and you have to re-run the pipeline, it will only reproduce the missing proview files, the existing proview files will not be re-produced, but will be included in the combined proview file, and thus, it will save a lot of time in this situation. 
+Moreover, even all of the mpileup and proview files are valid, we often still have to eliminate some of them, because of low coverage, high relatedness, bad godness-of-fit, or having >3.0% asexsual markers.
+
+Especially, because this pipeline producer (MPMP.pl) will automatically detect mpileup files and proview files, and produce a proview file for each of the mpileup files if and only if a corresponding proview file does not exist. So, for whatever reason, if you have to re-run the pipeline, it will rebuilt only the missing proview files but not the existing proview files, and then combine all proview files into the combined proview file, and thus, it saves a lot of time in this situation. 
 	
-####END
+#### END
