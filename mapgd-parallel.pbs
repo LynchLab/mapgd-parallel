@@ -1,0 +1,413 @@
+#!/bin/bash 
+#PBS -N mapgd-parallel-PA2013
+#PBS -k o
+#PBS -l nodes=1:ppn=16,walltime=120:00:00
+#PBS -l vmem=100gb
+#PBS -M ouqd@hotmail.com
+#PBS -m abe
+#PBS -j oe
+
+# Updated on 05/28/2018
+# This pipeline pbs is produced by the perl script:
+# perl Make_pipelines-Genome-mapping.pl /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/ PA2013 
+# Date and time: Thu Jun 28 17:42:31 2018
+
+set +x
+
+module rm gcc
+module load gcc
+module load gsl  
+module load samtools
+
+set -x
+cd /N/dc2/scratch/xw63/PA2013/Bwa/mpileup
+set +x
+echo ===============================================================
+echo 0. Make a header file
+echo ===============================================================
+time samtools view -H PA2013-001-RG_Sorted_dedup_realigned_Clipped.bam > /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header
+
+echo ===============================================================
+echo 1. Make a pro file of nucleotide-read quartets -counts of A, C, G, and T, from each of the mpileup files of the clones.
+echo ===============================================================
+set -x
+date
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-013.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-013.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-024.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-024.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-108.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-108.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-066.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-066.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-107.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-107.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-068.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-068.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-071.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-071.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-030.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-030.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-039.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-039.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-051.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-051.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-087.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-087.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-090.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-090.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-002.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-002.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-021.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-021.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-022.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-022.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-100.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-100.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-086.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-086.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-098.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-098.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-033.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-033.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-044.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-044.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-082.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-082.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-060.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-060.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-094.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-094.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-054.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-054.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-076.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-076.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-014.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-014.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-026.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-026.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-050.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-050.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-073.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-073.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-034.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-034.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-091.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-091.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-007.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-007.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-041.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-041.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-106.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-106.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-040.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-040.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-069.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-069.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-036.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-036.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-028.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-028.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-012.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-012.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-031.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-031.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-046.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-046.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-043.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-043.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-008.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-008.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-072.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-072.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-029.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-029.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-067.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-067.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-078.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-078.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-103.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-103.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-053.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-053.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-004.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-004.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-023.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-023.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-056.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-056.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-045.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-045.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-081.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-081.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-079.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-079.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-006.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-006.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-097.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-097.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-055.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-055.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-003.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-003.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-105.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-105.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-057.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-057.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-020.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-020.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-112.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-112.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-037.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-037.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-018.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-018.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-114.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-114.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-063.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-063.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-110.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-110.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-035.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-035.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-061.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-061.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-096.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-096.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-005.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-005.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-062.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-062.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-065.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-065.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-075.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-075.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-015.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-015.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-042.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-042.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-085.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-085.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-093.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-093.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-101.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-101.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-080.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-080.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-058.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-058.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-001.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-001.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-099.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-099.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-038.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-038.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-027.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-027.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-025.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-025.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-083.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-083.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-016.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-016.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-070.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-070.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-089.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-089.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-111.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-111.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-074.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-074.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-113.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-113.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-049.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-049.proview &
+
+			
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/bin/mapgd proview -i PA2013-032.mpileup -H /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA42.header > PA2013-032.proview &
+
+wait
+
+date
+set +x
+echo ===============================================================
+echo 2. Combine all mapgd proview files into one.
+echo ===============================================================
+set -x
+time java -cp ~/daphnia/mapgd-parallel/ CombineProview /N/dc2/scratch/xw63/PA2013/Bwa/mpileup PA2013
+set +x
+echo ===============================================================
+echo 3. Exclude mtDNA data from the pro file.
+echo ===============================================================
+echo  if mtDNA sequence is not included in the reference genome, skip this step:
+echo  if mtDNA sequence is included in the reference genome, execute the following commands:
+echo  mv PA2013.combined.Pro.txt PA2013.combined.Nuc+mt.pro.txt
+echo  time grep -v '^PA42_mt_genome' PA2013.combined.Nuc+mt.pro.txt > PA2013.combined.pro.txt
+set +x
+
+echo ===============================================================
+echo 4. Run the allele command to estimate allele and genotype frequencies from the pro file.
+echo ===============================================================
+set -x
+time mapgd allele -i /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.pro.txt -o /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.map -p /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.clean
+set +x
+
+echo ===============================================================
+echo 5. Run the filter command to filter the map file of ML estimates of the parameters.
+echo ===============================================================
+set -x
+time mapgd filter -i /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.map.map -p 20 -q 0.05 -Q 0.45 -c 800 -C 2400 -o /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_filtered.map
+set +x
+echo -p: minimum value of the likelihood-ratio test statistic for polymorphism 
+echo -q: minimum minor-allele frequency estimate
+echo -Q: maximum minor-allele frequency estimate
+echo -c: minimum population coverage
+echo -C: maximum population coverage
+echo ===============================================================
+echo 6. Run the genotype command to generate a file of genotype likelihoods
+echo ===============================================================
+set -x
+time mapgd genotype -p /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.clean.pro -m /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_filtered.map.map > /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.genotype
+set +x
+
+echo ===============================================================
+echo 6-1. Remove the unnecessary header and footer
+echo ===============================================================
+set -x
+time awk '{if ($3 != "MN_FREQ" && $3 >= 0.0 && $3 <= 1.0) print}' /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.genotype > /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_F.genotype
+set +x
+echo ===============================================================
+echo 6-2. Randomly pick a specified number - 200000 of SNPs from the file of genotype likelihoods 
+echo ===============================================================
+
+set -x
+time /N/dc2/projects/daphpops/Software/MAPGD-0.4.26/extras/sub_sample.py /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_F.genotype -N 200000 > /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_F_200K.genotype
+set +x
+echo ===============================================================
+echo 6-3. Extract the header from the file of genotype likelihoods
+echo ===============================================================
+set -x
+time head -n -1 /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.genotype | awk '{if ($3 == NULL || $1 ~ /^@/) print}' > /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_header.genotype
+set +x
+echo ===============================================================
+echo 6-4. Extract the footer from the file of genotype likelihoods
+echo ===============================================================
+
+set -x
+time tail -n 1 /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined.genotype > /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_footer.genotype
+set +x
+echo ===============================================================
+echo 6-5. Add the header and footer to the sub-sample of the file of genotype likelihoods
+echo ===============================================================
+
+set -x
+time cat /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_header.genotype /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_F_200K.genotype /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_footer.genotype > /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_F_200K_wh_wf.genotype
+
+set +x
+echo ===============================================================
+echo 7. Run the relatedness command
+echo ===============================================================
+
+set -x
+time mapgd relatedness -i /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_F_200K_wh_wf.genotype -o /N/dc2/scratch/xw63/PA2013/Bwa/mpileup/PA2013.combined_F_200K_wh_wf_rel.out
+
+set +x
+echo ===============================================================
+echo =============Task completed.===================
+echo ===============================================================
+
