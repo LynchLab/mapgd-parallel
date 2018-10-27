@@ -95,8 +95,10 @@ try{
 	for(int j=1;j<=Nf;j++)
 	{
 		rec[j]=br[j].readLine();
+		rec[j]=rec[j].replace("0.4.26","0.4.34");
+		rec[j]=rec[j].replace("SCAFFOLDS","REGIONS");
 		int P1=rec[j].indexOf("NAME"); //headline
-		int P2=rec[j].indexOf("SCAFFOLDS"); //headline
+		int P2=rec[j].indexOf("REGIONS"); //headline
 		int P3=rec[j].indexOf("VERSION"); //headline
 		int P4=rec[j].indexOf("FORMAT");
 		int P5=rec[j].indexOf("CONCATENATED");
@@ -126,11 +128,12 @@ try{
 	int i=0;
 	while((rec[1]=br[1].readLine()) != null){
 		
-		//rec[1]=rec[1].trim();
+		rec[1]=rec[1].replace("0.4.26","0.4.34");			
 		
 		for(int j=2;j<=Nf;j++)
 		{
 			rec[j]=br[j].readLine();
+			rec[j]=rec[j].replace("0.4.26","0.4.34");			
 			//if (rec[j]!= null) {rec[j]=rec[j].trim();}
 		}
 		
