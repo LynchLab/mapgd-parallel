@@ -1,5 +1,5 @@
 
-#### Filtering Map Using FilMapPro ####
+#### Filtering Map Using FilMapPro
 
 Program FilMapPro.java is used for filtering the sites by coverage, polymorphic likelihood ratio test and heterozygotes M:m ratio chi-square test. 
 
@@ -18,8 +18,17 @@ C: Max population total Coverage
 WD: working directory ;
 MapFile: .clean.map file name;	
 ProFile: .clean.pro file name
+Please note that in the commands to run FilMapPro, 
+(1) Both clean Map File and clean Pro File must be produced by mapgd the newest version: 0.4.35.
+(2) The e or E value must be 0.05 or 0.01. 
 
-Both MapFile and ProFile must be produced by mapgd the newest version: 0.4.35.
+For example:
+
+java -cp ./ FilMapPro2 -e 0.05 -E 0.05 -c 300 -C 3000 -d /N/dc2/scratch/xw63/Maps-0.4.34 -m PA2017.clean.map.map -p PA2017.clean.pro > FilMapPro2-Out-PA2017-1.txt
+
+java -cp ./ FilMapPro2 -e 0.01 -E 0.01 -c 800 -C 2400 -d /N/dc2/scratch/xw63/Maps-0.4.34 -m PA2013.clean.map.map -p PA2013.clean.pro > FilMapPro2-Out-PA2013-2.txt
+
+### The output files:
 
 After finished runing, the program will produce three output files:
 (1) MapFile.All-e-e-E-E-C-c-C-Fis.txt: contains all sites of the map (including zeros). This file is useful for extracting the  sequences, such as CDSs, exon, intron, which can be used in downstream data analysis, such as computing dN/dS or piN/piS. Note that because mapgd do not check the reference genome and fill in the reference sequence that are absent in the input mpileup file but fill them with "Ns" instead, you must check the reference genome and fill in the reference sequence. You may do this using the following programs:
@@ -33,7 +42,8 @@ To extract CDSs:
 (2) MapFile.Polymorphic-e-e-E-E-C-c-C-Fis.txt: contains Polymorphic sites of the map (not including zeros).  This file is useful for downstream data analysis, such as allele / genotype frequency, heterozygosity, Fis analysis.
 (3) MapFile-e-e-E-E-C-c-C-out.txt: contains the number of sites that are removed in the filtering process.
 
-Explain of the headline of the output file: 
+###Description of the headline of the output file: 
+
 Sca: scaffold      
 Pos: Position
 GROUP: group used for plotting 
